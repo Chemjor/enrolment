@@ -1,0 +1,76 @@
+#manage
+{
+color:white;
+font-size:15px;
+
+background-color:skyblue;
+font-weight:bolder;
+}
+#offered
+{
+
+	height: 443px;
+	overflow-y:scroll;
+}
+#offered td
+{
+	height:0px;
+	font-size:13px;
+	padding: 5px;
+}
+#offered th
+{
+background-color:lightgrey;
+font-size:15px;
+overflow: y-a
+}
+ td input{
+
+width:400px;
+}
+#container
+{
+color:white;
+font-size:10px;
+text-align:center;
+overflow-y:scroll;
+font-weight:bolder;
+height:470px;
+padding:5px;
+}
+#container td
+{
+color:black;
+font-size:13px;
+padding: 5px;
+}
+#add_sub
+{
+	width:500px;
+	text-align:center;
+	background-color:lightgrey;
+	font-family: century;
+	margin-top: 5px;
+	margin-left:40px;
+}
+#add_sub input
+{
+	text-align:center;
+	font-family: Tahoma;
+}
+#add-subject a:hover
+{
+background-color: #300000;
+}
+#instructors table th
+{
+font-size:15px;
+background-color:grey;
+font-weight: bold;
+}
+#instructors table td
+{
+font-size:13px;
+padding:1px;
+
+}

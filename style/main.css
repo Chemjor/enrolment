@@ -1,0 +1,64 @@
+body{
+	margin:auto;
+	font-family:Arial, Helvetica, sans-serif;
+	
+}
+#header
+{
+	height:103px;
+	background-color:#191970;
+	color:white;	
+}
+#footer
+{
+	text-align:center;
+	padding:15px;
+	color:white;
+	font-size: 10px;
+	background-color:#191970;
+	font-family: tahoma;
+	margin-top:5px;
+}
+#title
+{
+text-align:center;
+font-family:Times Roman;
+font-size:24px;
+padding-top:5px;
+margin-left:430px;
+width:520px;
+/**http://www.fillster.com/htmlcodes/marquees.html*/
+}
+#main
+{
+ height:500px;
+}
+#login_form
+{
+width:600px;
+margin-top:20px;
+margin-left:400px;
+height: 400px;
+}
+#login
+{
+text-align:center;
+color:black;
+font-weight:bolder;
+height:50px;
+background-color:#FFFAFA;
+padding-top:10px;
+font-size:24px;
+
+}
+#sign_form
+{
+width:600px;
+margin-left:400px;
+}
+#error
+{
+text-align:center;
+font-size:15px;
+font-weight:bolder;
+}

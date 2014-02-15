@@ -1,0 +1,177 @@
+#contents
+{
+	font-family:Tahoma;
+	background-color:#C8D7D8;	
+	height:1130px;
+}
+#enrolment
+{
+	font-family:Tahoma;
+	background-color:#C8D7D8;	
+	height:660px;
+}
+#enrol1
+{
+	font-family:Tahoma;
+	text-align:center;
+	width:420px;
+	background-color:#F0F0F0 ;
+	margin-left:3px;
+	float:left;
+	border-radius:5px;
+}
+#enrol1 input
+{
+	text-align:center;
+	font-size:15px;
+	font-family:century;
+	font-weight:bold;
+}
+#enrol2
+{
+	font-family:arial;
+	width:900px;
+	text-align:center;
+	background-color:#F0F0F0 ;
+	margin-right:10px;
+	float:right;
+}
+#enrol2 input
+{
+	
+	font-size:15px;
+	font-family:century;
+	font-weight:bold;
+
+	height:30px;
+}
+#admins
+{
+	padding-top:10px;
+	margin-left:150px;
+	width:1100px;
+	text-align:center;
+}
+#search
+{
+color:#7F462C;
+font-size:15px;
+}
+#studinfor
+{
+color:green;
+}
+#Stud_enrol
+{
+	font-family:Tahoma;
+	text-align:center;
+	width:671px;
+	background-color:#F0F0F0 ;
+	margin-left:3px;
+	padding:10px;
+	float:left;
+	border-radius:5px;
+}
+#stud_enrol td
+{
+color:blue;
+}
+#enroling_student
+{
+	font-family:Tahoma;
+	text-align:center;
+	width:671px;
+	background-color:#F0F0F0 ;
+	margin-left:3px;
+	float:right;
+	border-radius:5px;
+
+}
+#enroling_student th
+{	background-color:lightgrey;
+	font-family:arial;
+	font-size:12px;
+	text-align:center;
+
+}
+#enroling_student td
+{
+	font-family:arial;
+	font-size:12px;
+	text-align:center;
+	
+}
+#subjects
+{
+height:490px;
+color:grey;
+}
+#subjects th
+{
+text-align:center;
+font-size:12px;
+}
+#result th
+{
+font-size:15px;
+text-align:center;
+background-color:black;
+color:white;
+width:100px;
+font-family:TimesRoman;
+}
+#result td
+{
+font-size:10px;
+color:green;
+text-align:right;
+width:100px;
+font-family:century;
+}
+#pick_sub
+{
+	font-family:Tahoma;
+	width:671px;
+	background-color:#F0F0F0 ;
+	margin-left:3px;
+	padding:10px;
+	float:left;
+	border-radius:5px;
+	
+}
+#pick_sub th
+{
+
+	background-color:lightgrey;
+	color:black;
+	font-size:12px;
+	font-family:arial;
+
+}
+#loadslip
+{
+color:green;
+font-size:13px;
+font-family:Tahoma;
+}
+#loadslip th
+{
+background-color:lightgrey
+font-size:13px;
+font-family:Tahoma;
+}
+#loadslip td
+{
+font-size:13px;
+font-family:Tahoma;
+text-align:center;
+}
+#display_results
+{
+overflow:auto;
+height:405px;
+}
+#print_slip td
+{
+text-align:center
+}
