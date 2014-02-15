@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   PRIMARY KEY (`courseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.courses: ~77 rows (approximately)
+-- Dumping data for table enrolment.courses: ~83 rows (approximately)
 DELETE FROM `courses`;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
 INSERT INTO `courses` (`courseid`, `major_id`, `college`, `name`, `years`, `maxunits1`, `maxunits1a`, `maxunits1b`, `maxunits2`, `maxunits2a`, `maxunits2b`, `maxunits3`, `maxunits3a`, `maxunits3b`, `maxunits4`, `maxunits4a`, `maxunits4b`, `maxunits5`, `maxunits5a`, `maxunits5b`, `majorflag`, `isdegree`, `FTE`, `proglevel`) VALUES
