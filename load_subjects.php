@@ -3,6 +3,10 @@
 include("includes/conf.php");
 $id =$_GET['num'];
 $yr=$_GET['yr'];
+$sub = $_GET['sub'];
+
+
+
 	$query=mysql_query("select * from subject_offered where id='$id'");
 		
 			if($query)
@@ -29,7 +33,7 @@ $yr=$_GET['yr'];
 			{
 				if($num=mysql_num_rows($exist)>0)
 				{
-				header("Location:enrol.php?exist=1&id=$studno");
+				header("Location:enrol.php?exist=1&id=$studno&sub=$sub");
 				
 				}
 				else
@@ -38,7 +42,7 @@ $yr=$_GET['yr'];
 										VALUES('$studno','$ids','$code','$des','$units','$sec','$sched','$days','$room','$yr','$schol','$sem','$grade','','$remarks')");
 						if($sql)
 						{
-						header("Location:enrol.php?exist=2&id=$studno");
+						header("Location:enrol.php?exist=2&id=$studno&sub=$sub");
 						
 						}
 						else

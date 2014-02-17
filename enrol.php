@@ -171,6 +171,8 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 			$sub=$_GET['sub'];
 			$coscode_code=$_SESSION['coscode'];
 			$query=mysql_query("select * from subject_offered where curriculum_id='$sub'");
+
+
 				if($query)
 				{
 					 
@@ -190,7 +192,7 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 					$id=$data["id"];
 					$studno=$_SESSION['studno'];
 					echo "<tr>
-					<td><a href='load_subjects.php?num=$id&id=$studno&yr=$yrlevel'>".$data['subject_code']."</a></td>
+					<td><a href='load_subjects.php?num=$id&id=$studno&yr=$yrlevel&sub=$sub'>".$data['subject_code']."</a></td>
 					<td>".$data['sections']."</td>
 					<td>".$data['sub_description']."</td>
 					<td>".$data['schedule']."</td>
@@ -243,13 +245,12 @@ $(document).ready(function(){
   $('div.dropdown').each(function() {
     var $dropdown = $(this);
 
-    $("td.dropdown-link", $dropdown).click(function(e) {
-      e.preventDefault();
-      $div = $("div.dropdown-container", $dropdown);
-      $div.toggle('slow');
-      $("div.dropdown-container").not($div).hide();
-      return false;
-    });
+  	
+  	<?php if(isset($_GET['sub'])): ?>
+      	$div = $("div.dropdown-container", $dropdown);
+  		$div.toggle('slow');
+        $("div.dropdown-container").not($div).hide();
+  	<?php endif; ?>
 
 });
     
