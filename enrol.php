@@ -165,12 +165,12 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 	<input  class='form-control pull-right'style='text-align:center;height:25px;font-weight:bold;width:200px;color:black' type='text' placeholder='Type Subject' id='search' name='search' />
 					
 </div>
-<!--filter rows-->
-
-<!--end of filter rows-->
-		<?php
+<div id="" class="dropdown dropdown-processed">
+    <div class="dropdown-container" style="display: none;">
+<?php
+			$sub=$_GET['sub'];
 			$coscode_code=$_SESSION['coscode'];
-			$query=mysql_query("select * from subject_offered where  course_id='$coscode' and  sub_yr='$yrlevel' and semester='$sem' order by subject_code");
+			$query=mysql_query("select * from subject_offered where curriculum_id='$sub'");
 				if($query)
 				{
 					 
@@ -208,32 +208,58 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 				}
 				else{echo "error query";}
 
-			$query=mysql_query("select * from subject_offered where course_id!='$coscode' and major=0 and sub_yr='$yrlevel' and semester='$sem' order by subject_code");
-				if($query){
-
-				echo "<form id='myform'>";
-				echo"<br>";
-					echo"<table id='table'   width='94%'>";
-					while($data=mysql_fetch_assoc($query))
-					{
-					$id=$data["id"];
-					$studno=$_SESSION['studno'];
-					echo "<tbody><tr><td><a href='load_subjects.php?num=$id&id=$studno&yr=$yrlevel'>".$data['subject_code']."</a></td>
-					<td>".$data['sections']."</td><td >".$data['sub_description']."</td><td>".$data['schedule']."</td>
-					<td>".$data['days']."</td><td>".$data['room']."</td><td>".$data['sub_units']."</td><td width='5%'></td>
-					<td>".$data['limits']."</tr>";
-					
-					}
-
-					echo"</tbody></table>";
-					echo"</form>";
-				}
-
-			else{
-			echo"Error in the query table";
-			}
+			
 		?>
-		
+  </div>
+  <div id="curriculum">
+  <?php
+	$get=mysql_query("select * from curriculum where yrlevel='$yrlevel' and semester='$sem'") or die(mysql_error());
+	if($get)
+	{
+		echo "<table id='table' class='table table-stripped'>
+		<thead>
+		<th>SUBJECT CODE</th>
+		<th>DESCRIPTION</th>
+		</thead><tbody>";
+		while($result=mysql_fetch_assoc($get))
+		{
+			$sub=$result['id'];
+			$_SESSION['sub']=$result['id'];
+			echo "<tr><td class='target dropdown-link'><a href='enrol.php?id=$studno&sub=$sub''>". $result['sub_code']."</a></td>
+			<td>".$result['description']."</td></tr>";
+		}
+		echo"<tbody><table>";
+	}
+?>
+</div>
+
+
+</div>
+<!--filter rows-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('div.dropdown').each(function() {
+    var $dropdown = $(this);
+
+    $("td.dropdown-link", $dropdown).click(function(e) {
+      e.preventDefault();
+      $div = $("div.dropdown-container", $dropdown);
+      $div.toggle('slow');
+      $("div.dropdown-container").not($div).hide();
+      return false;
+    });
+
+});
+    
+  $('html').click(function(){
+    $("div.dropdown-container").hide();
+  });
+     
+});
+</script>
+<!--end of filter rows-->
 
 
 		<script type="text/javascript">
@@ -249,10 +275,12 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 		});
 
 </script>
-	</div>
+
 </div>
 
 </div>
-<?php include("includes/footer.php");?>
+
+</div>
+
 
 
