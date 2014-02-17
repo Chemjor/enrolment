@@ -205,3 +205,12 @@ background-color:#C8D7D8;
 	border-radius: 5px;
 	height: 450px	
 }
+#curriculum
+{
+	overflow-y:scroll;
+	height:510px; 
+}
+.target
+{
+	cursor:pointer;
+}
