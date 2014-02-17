@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.6.14-log - MySQL Community Server (GPL)
+-- Server version:               5.6.14 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
--- HeidiSQL Version:             8.3.0.4694
+-- HeidiSQL Version:             8.1.0.4585
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   PRIMARY KEY (`courseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.courses: ~77 rows (approximately)
+-- Dumping data for table enrolment.courses: ~83 rows (approximately)
 DELETE FROM `courses`;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
 INSERT INTO `courses` (`courseid`, `major_id`, `college`, `name`, `years`, `maxunits1`, `maxunits1a`, `maxunits1b`, `maxunits2`, `maxunits2a`, `maxunits2b`, `maxunits3`, `maxunits3a`, `maxunits3b`, `maxunits4`, `maxunits4a`, `maxunits4b`, `maxunits5`, `maxunits5a`, `maxunits5b`, `majorflag`, `isdegree`, `FTE`, `proglevel`) VALUES
@@ -188,21 +188,46 @@ INSERT INTO `courses` (`courseid`, `major_id`, `college`, `name`, `years`, `maxu
 -- Dumping structure for table enrolment.curriculum
 DROP TABLE IF EXISTS `curriculum`;
 CREATE TABLE IF NOT EXISTS `curriculum` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sub_code` varchar(10) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sub_code` varchar(15) NOT NULL,
+  `description` varchar(150) NOT NULL,
   `yrlevel` tinyint(2) NOT NULL,
   `prequisite_sub` varchar(30) NOT NULL,
   `semester` varchar(10) NOT NULL,
   `cut_off` int(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.curriculum: ~2 rows (approximately)
+-- Dumping data for table enrolment.curriculum: ~26 rows (approximately)
 DELETE FROM `curriculum`;
 /*!40000 ALTER TABLE `curriculum` DISABLE KEYS */;
-INSERT INTO `curriculum` (`id`, `sub_code`, `yrlevel`, `prequisite_sub`, `semester`, `cut_off`) VALUES
-	(1, 'Math 111', 1, '', 'FIRST', 80),
-	(2, 'Math 112', 1, 'Math 111', 'Second', 85);
+INSERT INTO `curriculum` (`id`, `sub_code`, `description`, `yrlevel`, `prequisite_sub`, `semester`, `cut_off`) VALUES
+	(1, 'Math 111', 'College Algebra', 1, '', 'First', 80),
+	(2, 'Math 112', 'Plane trigonometry', 1, 'Math 111', 'Second', 80),
+	(3, 'ENG 111', 'Basic Comm. Skills 1(Study and Thinking)', 1, '', 'First', 80),
+	(4, 'ENG 112', 'Basic Comm. Skills 2(Writing in the Discipline)', 1, 'ENG 111', 'Second', 80),
+	(5, 'Fil 111', 'Sining ng Pakikipagtalastasan', 1, '', 'First', 80),
+	(6, 'Fil 112', 'Pagbasa at pagsulat nd Ibat Ibang Disiplina', 1, 'Fil 111', 'Second', 80),
+	(7, 'ITS 111', 'IT Fundamentals', 1, '', 'First', 85),
+	(8, 'ITS 113', 'Programming I', 1, '', 'First', 85),
+	(9, 'ITS 112', 'Discrete Structures', 1, 'ITS 111', 'Second', 85),
+	(10, 'ITS 114', 'Programming II', 1, 'ITS 113', 'Second', 85),
+	(11, 'Psych 111', 'General Psychology', 1, '', 'First', 80),
+	(12, 'P.E. 111', 'Physical Education', 1, '', 'First', 80),
+	(13, 'NSTP I', 'National Service Training Program', 1, '', 'First', 80),
+	(14, 'NSTP II', 'National Service Training Program II', 1, 'NSTP I', 'Second', 80),
+	(15, 'P.E. 112', 'Physical Education II', 1, 'P.E 111', 'Second', 80),
+	(16, 'ITS 116', 'Data Structures', 1, '', 'Second', 85),
+	(17, 'SOCIO 111', 'Cultural & Society w/ Family Planning', 1, '', 'First', 80),
+	(18, 'AS 111', 'Introduction to Animal Science', 1, '', 'First', 85),
+	(19, 'AS 112', 'Intro to Genetics', 1, 'AS 111', 'Second', 85),
+	(20, 'SC 111', 'Fundamentals of Agronomy', 1, '', 'First', 85),
+	(21, 'HRM 111', 'Intro to HRM', 1, '', 'First', 85),
+	(22, 'Bio 111A', 'Zoology', 1, '', 'First', 85),
+	(23, 'Bio 111B', 'Botany', 1, '', 'First', 85),
+	(24, 'Hort 111', 'Intro to Horticulture', 1, '', 'Second', 85),
+	(25, 'Crop Prot I', 'Entomology', 1, '', 'Second', 85),
+	(26, 'AS 114', 'Intro to Livestock and Poultry', 1, '', 'Second', 85);
 /*!40000 ALTER TABLE `curriculum` ENABLE KEYS */;
 
 
@@ -230,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.payment: ~7 rows (approximately)
+-- Dumping data for table enrolment.payment: ~6 rows (approximately)
 DELETE FROM `payment`;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
 INSERT INTO `payment` (`id`, `studno`, `tut_orno`, `tut_ordate`, `tut_amount`, `mis_orno`, `mis_date`, `mis_amount`, `course`, `coursecode`, `yrlevel`, `graduating`, `scholarship`, `grant_amount`, `schoolyear`, `semester`, `user_in`, `updated`) VALUES
@@ -397,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `stud_information` (
   UNIQUE KEY `studno` (`studno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201400010 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.stud_information: ~9 rows (approximately)
+-- Dumping data for table enrolment.stud_information: ~8 rows (approximately)
 DELETE FROM `stud_information`;
 /*!40000 ALTER TABLE `stud_information` DISABLE KEYS */;
 INSERT INTO `stud_information` (`studno`, `fname`, `mname`, `lname`, `sufname`, `gender`, `bday`, `bplace`, `course`, `street`, `barangay`, `town`, `province`, `country`, `contact`, `civilstatus`, `parent`, `parent_con`, `father`, `father_con`, `mother`, `mother_con`, `spouse`, `spouse_con`, `numboy`, `numgirl`, `or_num`, `or_date`, `date_in`, `user_in`) VALUES
@@ -433,9 +458,9 @@ CREATE TABLE IF NOT EXISTS `subject_enrolled` (
   `print` tinyint(2) NOT NULL,
   `Remarks` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.subject_enrolled: ~5 rows (approximately)
+-- Dumping data for table enrolment.subject_enrolled: ~6 rows (approximately)
 DELETE FROM `subject_enrolled`;
 /*!40000 ALTER TABLE `subject_enrolled` DISABLE KEYS */;
 INSERT INTO `subject_enrolled` (`id`, `studno`, `sub_id`, `sub_code`, `description`, `sub_units`, `sub_section`, `schedule`, `days`, `room`, `yrlevel`, `schoolyear`, `semester`, `grade`, `print`, `Remarks`) VALUES
@@ -443,7 +468,8 @@ INSERT INTO `subject_enrolled` (`id`, `studno`, `sub_id`, `sub_code`, `descripti
 	(29, 201400004, 120, 'Bio 111A', 'Zoology', 3, 'A', '1:00PM-2:00PM', 'M-W-F', 'ST21', 1, '2014-2015', 'First', 0, 1, 'INC'),
 	(30, 201400004, 121, 'Bio 111B', 'Botany', 3, 'A', '11:00AM-12:00PM', 'M-W-F', 'ST21', 1, '2014-2015', 'First', 0, 1, 'INC'),
 	(31, 201400004, 123, 'SC 111', 'Fundamentals of Agronomy', 3, 'A', '4:00PM-5:00PM', 'M-W-F', 'ST21', 1, '2014-2015', 'First', 0, 1, 'INC'),
-	(32, 201400004, 103, 'Math 111', 'College Algebra', 3, 'C', '1:00PM-2:00PM', 'M-W-F', 'CAS 109', 1, '2014-2015', 'First', 0, 0, 'INC');
+	(32, 201400004, 103, 'Math 111', 'College Algebra', 3, 'C', '1:00PM-2:00PM', 'M-W-F', 'CAS 109', 1, '2014-2015', 'First', 0, 0, 'INC'),
+	(38, 201400002, 101, 'Math 111', 'College Algebra', 3, 'A', '10:00AM-11:00AM', 'M-W-F', 'CAS 109', 1, '2014-2015', 'First', 0, 0, 'INC');
 /*!40000 ALTER TABLE `subject_enrolled` ENABLE KEYS */;
 
 
@@ -1543,7 +1569,7 @@ DROP TABLE IF EXISTS `subject_offered`;
 CREATE TABLE IF NOT EXISTS `subject_offered` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sub_id` int(10) NOT NULL,
-  `curriculum_id` int(10) DEFAULT NULL,
+  `curriculum_id` int(10) unsigned DEFAULT NULL,
   `subject_code` varchar(20) NOT NULL,
   `sections` varchar(2) NOT NULL,
   `sub_description` varchar(100) NOT NULL,
@@ -1563,39 +1589,39 @@ CREATE TABLE IF NOT EXISTS `subject_offered` (
   `printed` tinyint(1) NOT NULL,
   `block` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.subject_offered: 27 rows
+-- Dumping data for table enrolment.subject_offered: ~27 rows (approximately)
 DELETE FROM `subject_offered`;
 /*!40000 ALTER TABLE `subject_offered` DISABLE KEYS */;
 INSERT INTO `subject_offered` (`id`, `sub_id`, `curriculum_id`, `subject_code`, `sections`, `sub_description`, `sub_units`, `schedule`, `days`, `room`, `limits`, `schoolyear`, `semester`, `instructor`, `sub_yr`, `course_id`, `college_id`, `major`, `updated`, `printed`, `block`) VALUES
-	(1, 100, NULL, 'ENG 111', 'A', 'Basic Comm. Skills 1(Study and Thinking)', 3, '7:00AM-8:00AM', 'M-W-F', 'CAS302', 50, '2014-2015', 'First', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-02 17:59:02', 0, 0),
-	(2, 101, NULL, 'Math 111', 'A', 'College Algebra', 3, '10:00AM-11:00AM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'First', '1360', 1, 'BSINT', 'CAS', 0, '2014-01-30 14:35:26', 0, 0),
-	(3, 103, NULL, 'Math 111', 'C', 'College Algebra', 3, '1:00PM-2:00PM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'First', '1047', 1, 'BSINT', 'CAS', 0, '2014-01-30 14:22:56', 0, 0),
-	(4, 104, NULL, 'Fil 111', 'A', 'Sining ng Pakikipagtalastasan', 3, '8:30AM-10:00AM', 'M-W-F', 'CS 35', 50, '2014-2015', 'First', '1500', 1, 'BSINT', 'CAS', 0, '2014-02-05 15:25:13', 0, 0),
-	(5, 105, NULL, 'ITS 111', 'A', 'IT Fundamentals', 3, '8:00AM-9:00AM', 'M-W-F', 'CAS105', 45, '2014-2015', 'First', '9002', 1, 'BSINT', 'CAS', 1, '2014-02-01 16:25:12', 0, 0),
-	(6, 106, NULL, 'ITS 113', 'A', 'Programming', 3, '9:00AM-10:00AM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'First', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-01 16:25:20', 0, 0),
-	(7, 107, NULL, 'Psych 111', 'A', 'General Pyschology', 3, '5:30PM-7:00PM', 'T-TH', 'CS7', 45, '2014-2015', 'First', '1200', 1, 'BSINT', 'CAS', 0, '2014-01-30 14:39:21', 0, 0),
-	(8, 108, NULL, 'P.E. 111', 'A', 'Physical Education', 2, '2:00PM-3:00PM', 'M-W-F', 'Open Court', 50, '2014-2015', 'First', '9002', 1, 'CAS', 'CAS', 0, '2014-02-01 15:07:14', 0, 0),
-	(9, 109, NULL, 'NSTP 1', 'A', 'National Service Training Program', 3, '7:00AM-8:00AM', 'SAT', 'TBA', 50, '2014-2015', 'First', '1360', 1, 'BSINT', 'CAS', 0, '2014-01-30 14:35:53', 0, 0),
-	(10, 110, NULL, 'ENG 112', 'A', 'Basic Comm. Skills 2(Writing in the Discipline)', 3, '7:00AM-8:00AM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 0, '2014-02-01 14:42:02', 0, 0),
-	(11, 111, NULL, 'Math 112', 'A', 'Plane Trigonometry', 3, '1:00PM-2:00PM', 'M-W-F', 'CAS 103', 50, '2014-2015', 'Second', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-01 16:48:51', 0, 0),
-	(12, 112, NULL, 'Fill 112', 'A', 'Pagbasa at pagsulat nd Ibat Ibang Disiplina', 3, '9:00AM-10:00AM', 'M-W-F', 'CS 35', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 0, '2014-02-01 14:40:12', 0, 0),
-	(13, 113, NULL, 'ITS 112', 'A', 'Discrete Structures', 3, '3:00PM-4:00PM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-05 12:10:54', 0, 0),
-	(14, 114, NULL, 'ITS 114', 'A', 'Programming II', 3, '5:00PM-6:00PM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-01 16:25:39', 0, 0),
-	(15, 115, NULL, 'ITS 116', 'A', 'Data Structures', 3, '9:00AM-10:00AM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-01 16:25:43', 0, 0),
-	(16, 116, NULL, 'P.E. 112', 'A', 'Physical Education II', 2, '4:00PM-5:00PM', 'M-W-F', 'Open Court', 50, '2014-2015', 'Second', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-01 14:54:39', 0, 0),
-	(17, 117, NULL, 'NSTP 2', 'A', 'National Service Training Program I', 3, '7:00AM-8:00AM', 'SUN', 'TBA', 50, '2014-2015', 'Second', '1360', 1, 'BSINT', 'CAS', 0, '2014-02-01 14:56:26', 0, 0),
-	(18, 118, NULL, 'SOCIO 111', 'A', 'Cultural & Society w/ Family Planning', 3, '7:00PM-8:00PM', 'M-W-F', 'CAS301', 50, '2014-2015', 'First', '1500', 1, 'BSHM', 'CBA', 0, '2014-02-05 11:22:51', 0, 0),
-	(19, 119, NULL, 'HRM 111', 'A', 'Intro to HRM', 3, '3:00PM-4:00PM', 'M-W-F', 'CTHM100', 50, '2014-2015', 'First', '1500', 1, 'BSHM', 'CBA', 1, '2014-02-05 13:23:06', 0, 0),
-	(20, 120, NULL, 'Bio 111A', 'A', 'Zoology', 3, '1:00PM-2:00PM', 'M-W-F', 'ST21', 50, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 0, '2014-02-05 14:20:04', 0, 0),
-	(21, 121, NULL, 'Bio 111B', 'A', 'Botany', 3, '11:00AM-12:00PM', 'M-W-F', 'ST21', 45, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 0, '2014-02-05 14:20:36', 0, 0),
-	(22, 122, NULL, 'AS 111', 'A', 'Introduction to Animal Science', 3, '8:30AM-10:00AM', 'T-TH', 'ST21', 40, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 1, '2014-02-10 10:50:25', 0, 0),
-	(23, 123, NULL, 'SC 111', 'A', 'Fundamentals of Agronomy', 3, '4:00PM-5:00PM', 'M-W-F', 'ST21', 40, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 1, '2014-02-05 14:18:20', 0, 0),
-	(24, 124, NULL, 'Hort 111', 'A', 'Intro to Horticulture', 3, '3:30PM-5:00PM', 'T-TH', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-05 15:45:00', 0, 0),
-	(25, 125, NULL, 'AS 112', 'A', 'Intro to Genetics', 3, '5:00PM-6:00PM', 'M-W-F', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-05 15:44:23', 0, 0),
-	(26, 126, NULL, 'Crop Prot 1', 'A', 'Entomology', 3, '9:30AM-11:00AM', 'T-TH', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-05 15:44:07', 0, 0),
-	(27, 127, NULL, 'AS 114', 'A', 'Intro to Livestock and Poultry', 3, '5:30PM-7:00PM', 'T-TH', 'AGRI2', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-05 15:46:35', 0, 0);
+	(1, 100, 3, 'ENG 111', 'A', 'Basic Comm. Skills 1(Study and Thinking)', 3, '7:00AM-8:00AM', 'M-W-F', 'CAS302', 50, '2014-2015', 'First', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:32:52', 0, 0),
+	(2, 101, 1, 'Math 111', 'A', 'College Algebra', 3, '10:00AM-11:00AM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'First', '1360', 1, 'BSINT', 'CAS', 0, '2014-02-15 19:03:46', 0, 0),
+	(3, 103, 1, 'Math 111', 'C', 'College Algebra', 3, '1:00PM-2:00PM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'First', '1047', 1, 'BSINT', 'CAS', 0, '2014-02-15 19:03:50', 0, 0),
+	(4, 104, 5, 'Fil 111', 'A', 'Sining ng Pakikipagtalastasan', 3, '8:30AM-10:00AM', 'M-W-F', 'CS 35', 50, '2014-2015', 'First', '1500', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:40:43', 0, 0),
+	(5, 105, 7, 'ITS 111', 'A', 'IT Fundamentals', 3, '8:00AM-9:00AM', 'M-W-F', 'CAS105', 45, '2014-2015', 'First', '9002', 1, 'BSINT', 'CAS', 1, '2014-02-17 10:46:28', 0, 0),
+	(6, 106, 8, 'ITS 113', 'A', 'Programming I', 3, '9:00AM-10:00AM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'First', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-17 10:49:11', 0, 0),
+	(7, 107, 11, 'Psych 111', 'A', 'General Pyschology', 3, '5:30PM-7:00PM', 'T-TH', 'CS7', 45, '2014-2015', 'First', '1200', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:51:10', 0, 0),
+	(8, 108, 12, 'P.E. 111', 'A', 'Physical Education', 2, '2:00PM-3:00PM', 'M-W-F', 'Open Court', 50, '2014-2015', 'First', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-17 11:09:09', 0, 0),
+	(9, 109, 13, 'NSTP 1', 'A', 'National Service Training Program', 3, '7:00AM-8:00AM', 'SAT', 'TBA', 50, '2014-2015', 'First', '1360', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:52:39', 0, 0),
+	(10, 110, 4, 'ENG 112', 'A', 'Basic Comm. Skills 2(Writing in the Discipline)', 3, '7:00AM-8:00AM', 'M-W-F', 'CAS 109', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:38:19', 0, 0),
+	(11, 111, 2, 'Math 112', 'A', 'Plane Trigonometry', 3, '1:00PM-2:00PM', 'M-W-F', 'CAS 103', 50, '2014-2015', 'Second', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-15 20:36:29', 0, 0),
+	(12, 112, 6, 'Fill 112', 'A', 'Pagbasa at pagsulat nd Ibat Ibang Disiplina', 3, '9:00AM-10:00AM', 'M-W-F', 'CS 35', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:40:47', 0, 0),
+	(13, 113, 9, 'ITS 112', 'A', 'Discrete Structures', 3, '3:00PM-4:00PM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-17 10:49:00', 0, 0),
+	(14, 114, 10, 'ITS 114', 'A', 'Programming II', 3, '5:00PM-6:00PM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-17 10:50:02', 0, 0),
+	(15, 115, 16, 'ITS 116', 'A', 'Data Structures', 3, '9:00AM-10:00AM', 'M-W-F', 'CAS 106', 45, '2014-2015', 'Second', '1047', 1, 'BSINT', 'CAS', 1, '2014-02-17 10:55:58', 0, 0),
+	(16, 116, 15, 'P.E. 112', 'A', 'Physical Education II', 2, '4:00PM-5:00PM', 'M-W-F', 'Open Court', 50, '2014-2015', 'Second', '9002', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:55:40', 0, 0),
+	(17, 117, 14, 'NSTP 2', 'A', 'National Service Training Program II', 3, '7:00AM-8:00AM', 'SUN', 'TBA', 50, '2014-2015', 'Second', '1360', 1, 'BSINT', 'CAS', 0, '2014-02-17 10:53:30', 0, 0),
+	(18, 118, 17, 'SOCIO 111', 'A', 'Cultural & Society w/ Family Planning', 3, '7:00PM-8:00PM', 'M-W-F', 'CAS301', 50, '2014-2015', 'First', '1500', 1, 'BSHM', 'CBA', 0, '2014-02-17 10:58:00', 0, 0),
+	(19, 119, 21, 'HRM 111', 'A', 'Intro to HRM', 3, '3:00PM-4:00PM', 'M-W-F', 'CTHM100', 50, '2014-2015', 'First', '1500', 1, 'BSHM', 'CBA', 1, '2014-02-17 11:01:21', 0, 0),
+	(20, 120, 22, 'Bio 111A', 'A', 'Zoology', 3, '1:00PM-2:00PM', 'M-W-F', 'ST21', 50, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 0, '2014-02-17 11:02:21', 0, 0),
+	(21, 121, 23, 'Bio 111B', 'A', 'Botany', 3, '11:00AM-12:00PM', 'M-W-F', 'ST21', 45, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 0, '2014-02-17 11:02:30', 0, 0),
+	(22, 122, 18, 'AS 111', 'A', 'Introduction to Animal Science', 3, '8:30AM-10:00AM', 'T-TH', 'ST21', 40, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 10:58:44', 0, 0),
+	(23, 123, 20, 'SC 111', 'A', 'Fundamentals of Agronomy', 3, '4:00PM-5:00PM', 'M-W-F', 'ST21', 40, '2014-2015', 'First', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 10:59:42', 0, 0),
+	(24, 124, 24, 'Hort 111', 'A', 'Intro to Horticulture', 3, '3:30PM-5:00PM', 'T-TH', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 11:03:53', 0, 0),
+	(25, 125, 19, 'AS 112', 'A', 'Intro to Genetics', 3, '5:00PM-6:00PM', 'M-W-F', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 10:58:57', 0, 0),
+	(26, 126, 25, 'Crop Prot 1', 'A', 'Entomology', 3, '9:30AM-11:00AM', 'T-TH', 'AGRI1', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 11:04:11', 0, 0),
+	(27, 127, 26, 'AS 114', 'A', 'Intro to Livestock and Poultry', 3, '5:30PM-7:00PM', 'T-TH', 'AGRI2', 40, '2014-2015', 'Second', '1200', 1, 'AAS', 'CAF', 1, '2014-02-17 11:06:52', 0, 0);
 /*!40000 ALTER TABLE `subject_offered` ENABLE KEYS */;
 
 
@@ -1610,7 +1636,7 @@ CREATE TABLE IF NOT EXISTS `subject_units` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.subject_units: ~12 rows (approximately)
+-- Dumping data for table enrolment.subject_units: ~10 rows (approximately)
 DELETE FROM `subject_units`;
 /*!40000 ALTER TABLE `subject_units` DISABLE KEYS */;
 INSERT INTO `subject_units` (`id`, `course_id`, `semester`, `units`, `yrlevel`) VALUES
@@ -1646,7 +1672,7 @@ CREATE TABLE IF NOT EXISTS `teachers` (
   PRIMARY KEY (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table enrolment.teachers: ~5 rows (approximately)
+-- Dumping data for table enrolment.teachers: ~2 rows (approximately)
 DELETE FROM `teachers`;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
 INSERT INTO `teachers` (`teacher_id`, `title`, `fname`, `mname`, `lname`, `suffix`, `college`, `password`, `level`, `code`, `Time_reg`) VALUES
