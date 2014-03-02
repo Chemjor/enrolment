@@ -87,7 +87,7 @@ session_start();
 	?>
 		<?php
 	$studno=$_SESSION['studno'];
-	$done=mysql_query("select * from subject_enrolled where studno='{$_SESSION['studno']}'");
+	$done=mysql_query("select * from subject_enrolled where studno='{$_SESSION['studno']}' order by days");
 	$i=1;
 	if($done)
 	{

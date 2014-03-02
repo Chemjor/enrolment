@@ -52,6 +52,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 					<th>Rooms</th>
 					<th>Limit</th>
 					<th>Semester</th>
+					<th>YLevel</th>
 					<th>Instructor</th>
 					
 					<th style="font-weight:bold;text-align:center">Action</th>
@@ -75,6 +76,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 						<td>".$num['room']."</td>
 						<td>".$num['limits']."</td>
 						<td>".$num['semester']."</td>
+						<td>".$num['sub_yr']."</td>
 						<td width='5%'>".$num['instructor']."</td>
 						
 						<td >
@@ -169,7 +171,17 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 			  </div>
 			  <div class="form-group">
 			  <label for="subject_code" >Subject Code:</label>
-			  <div><input type="text" required class="form-control" id="subject_code" name="subject_code"></div>
+			  <div>
+
+			  <div><select required class="form-control" id="subject_code" name="subject_code"></div>
+			  
+			  <?php
+			  	$query=mysql_query("select * from subject_mst order by subject_code") or die("Can't Query");
+			  	while($results=mysql_fetch_assoc($query)){
+			  		echo "<option>".$results['subject_code']."</option><br>";
+			  	}
+			  ?>
+			  </select>
 			  </div>
 
 			  <div class="form-group" >
@@ -179,7 +191,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 
 			  <div class="form-group">
 			  <label for="sub_description">Description:</label>
-			  <div> <input type="text" required class="form-control" id="sub_description" name="sub_description"></div>
+		 	  <input type="text" required class="form-control" id="sub_description" name="sub_description">
 			  </div>
 
 			   <div class="form-group">
@@ -214,6 +226,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 			   	<option>7:00PM-8:00PM</option>
 			   	<option>7:30PM-9:00PM</option>
 			   	<option>8:00PM-9:00PM</option>
+			   	<option>TBA</option>
 			   	</select>
 			   </div>
 
@@ -222,11 +235,11 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 			   <div><select required class="form-control" id="days" name="days">
 			   <option value="M-W-F">M-W-F</option>
 			   <option value="T-TH">T-TH</option>
-			   <option value="M-W-F">M-W</option>
-			   <option value="T-TH">M-F</option>			   
+			   <option value="M-W">M-W</option>		   
 			   <option value="SAT">SAT</option>
 			   <option value="SUN">SUN</option>
 			   <option value="M-W-F-T-TH">DAILY</option>
+			   <option>TBA</option>
 			   </select>
 			   </div>
 			   </div>

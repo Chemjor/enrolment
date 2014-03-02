@@ -75,7 +75,7 @@ $("#display_results").html(data);
 			{
 				if($_GET['not']=='1')
 				{
-				echo "<div style='background-color:grey;font-size:14px;color:white'>Not Yet Paid. Please proceed to Cashier for payment</div>";
+				echo "<div id='nopay' style='background-color:grey;font-size:14px;color:white'>Not Yet Paid. Please proceed to Cashier for payment</div>";
 				}
 				if($_GET['not']=='0')
 				{
@@ -84,6 +84,13 @@ $("#display_results").html(data);
 				}
 			}
 		?>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			setTimeout(function(){
+				$('#nopay').fadeOut('slow');
+			},4000);
+		});
+		</script>
 		</form>
 		<center><div style="color:#300000;height:406px" >
 			<div style="height:200px;overflow-y:scroll;background-color:" id="display_results">

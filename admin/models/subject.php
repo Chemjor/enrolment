@@ -12,7 +12,8 @@ function createSubject()
 	$room=$_POST['room'];
 	$sem=$_POST['semester'];
 	$cos=$_POST['course_id'];
-	$sql=mysql_query("select * from subject_offered where room='$room' AND course_id='$cos' AND semester='$sem' AND schedule='$sched'");
+	$yr=$_POST['sub_yr'];
+	$sql=mysql_query("select * from subject_offered where room='$room' AND course_id='$cos' AND semester='$sem' AND sub_yr='$yr' AND schedule='$sched'");
 	$numrows=mysql_num_rows($sql);
 	if($numrows==0)
 	{//add a subject..

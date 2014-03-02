@@ -7,7 +7,12 @@
 		<div id="login_form" style="">
 		
 		<div class="alert alert-info center " style="padding:10px;margin-top:50px;"><center><b><span class="glyphicon glyphicon-lock"></span>&nbsp;ENTER YOUR ACCOUNT USERNAME AND PASSWORD</b></center></div>
-			
+		<script type="text/javascript">
+		$(document).ready(function(){
+			setTimeout(function(){
+				$('#error').fadeOut();},2000);
+		});
+		</script>	
 		<?php
 			if(isset($_GET['login']))
 			{

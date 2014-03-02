@@ -6,6 +6,7 @@
 		<div id="login_form">
 		
 		<div class="alert alert-info center " style="padding:10px;margin-top:50px;"><center><b><span class="glyphicon glyphicon-lock"></span>&nbsp;ENTER YOUR ACCOUNT USERNAME AND PASSWORD</b></center></div>
+	
 			<?php
 				if(isset($_GET['error']))
 				{
@@ -34,7 +35,7 @@
 				{
 					if($_GET['logout']=='1')
 					{
-					echo "<div id='error' style='padding:5px'class='alert alert-success alert-dismissable'>";
+					echo "<div id='error' style='padding:5px'class='logout alert alert-success alert-dismissable'>";
 					echo "You Logged Out. Welcome again!";
 					echo"</div>";
 					}
@@ -46,6 +47,13 @@
 					}					
 				}
 			?>
+			<script type="text/javascript">
+				$(document).ready(function() { 
+				    setTimeout(function() { 
+				        $('#error').fadeOut(); 
+				 }, 2000); 
+				});
+			</script>
 			<form action="login_user.php" method="post" >
 			<div style="background-color:#f5f5f5">
 			<br>
