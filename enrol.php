@@ -332,6 +332,7 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 		<thead>
 		<th>SUBJECT CODE</th>
 		<th>DESCRIPTION</th>
+		<th>Prequisite</th>
 		</thead><tbody>";
 		while($result=mysql_fetch_assoc($get))
 		{
@@ -339,7 +340,7 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 			$sub=$result['id'];
 			$_SESSION['sub']=$result['id'];
 			echo "<tr><td class='target dropdown-link'><a href='enrol.php?id=$studno&sub=$sub&codes=$code'>". $result['sub_code']."</a></td>
-			<td>".$result['description']."</td></tr>";
+			<td>".$result['description']."</td><td>".$result['prequisite_sub']."</td></tr>";
 		}
 		echo"<tbody><table>";
 	}
