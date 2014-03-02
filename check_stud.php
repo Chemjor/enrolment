@@ -2,7 +2,7 @@
 include("includes/conf.php");
 $cors=$_GET['code'];
 $stud=$_GET['id'];
-$schoolyear="2010-2011";
+$schoolyear="2013-2014";
 $sem="First";
 $yr="";
 $query=mysql_query("select * from payment where studno='$stud' AND schoolyear='$schoolyear'
