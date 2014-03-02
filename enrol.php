@@ -267,7 +267,9 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 			$coscode_code=$_SESSION['coscode'];
 			$nrol=mysql_query("select count(sub_code) as code,schedule from subject_enrolled where sub_code='$sub_code'");
 			$get=mysql_fetch_assoc($nrol);
-			$cnt=$get['code'];
+			// $cnt=$get['code'];
+
+
 			$times=$get['schedule'];
 			 
 			$query=mysql_query("select * from subject_offered where curriculum_id='$sub'");
@@ -291,22 +293,27 @@ Subjects to take this <?php echo $sem." semester ".$yr;?>
 					while($data=mysql_fetch_assoc($query))
 					{
 
+					$cnt = mysql_fetch_array(mysql_query("select count(id) as enrolled from subject_enrolled where sub_id = $data[sub_id]"));
+
+
 					$id=$data['id'];
 					$cods=$data['subject_code'];
 					$studno=$_SESSION['studno'];
 					$_SESSION['schedule']=$data['schedule'];
 					$_SESSION['days']=$data['days'];
 					//$_SESSION['sec']=$data['sections'];
-					echo "<tr>
-					<td><a href='load_subjects.php?num=$id&id=$studno&
-					yr=$yrlevel&sub=$sub&codes=$cods'>".$data['subject_code']."</a></td>
+					$link = $cnt['enrolled'] == $data['limits'] ? "#full" : "href='load_subjects.php?num=$id&id=$studno&yr=$yrlevel&sub=$sub&codes=$cods'";
+
+
+					echo "<tr class='". ($cnt['enrolled'] == $data['limits'] ? 'alert-info' : '') ."'>
+					<td><a $link>".$data['subject_code']."</a></td>
 					<td>".$data['sections']."</td>
 					<td>".$data['sub_description']."</td>
 					<td>".$data['schedule']."</td>
 					<td>".$data['days']."</td>
 					<td>".$data['room']."</td>
 					<td>".$data['sub_units']."</td>
-					<td>$cnt</td>
+					<td>$cnt[enrolled]</td>
 					<td>".$data['limits']."</td>
 					
 					</tr>";
