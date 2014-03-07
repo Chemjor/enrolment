@@ -4,9 +4,7 @@
 	<div id="main">
 		<div class="alert alert-info" style="text-align:center;padding:10px;font-size:25px;color:#AA0D0D;font-weight:bold">CURRICULLUM-BASED ENROLMENT SYSTEM</div>
 		<div id="login_form">
-		
-		<div class="alert alert-info center " style="padding:10px;margin-top:50px;"><center><b><span class="glyphicon glyphicon-lock"></span>&nbsp;ENTER YOUR ACCOUNT USERNAME AND PASSWORD</b></center></div>
-	
+		<br>
 			<?php
 				if(isset($_GET['error']))
 				{

@@ -5,7 +5,8 @@ session_start();
 ?>
 
 	<div id="main">
-		<div class="alert alert-info" style="text-align:center;padding:10px;color:#000033;font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CURRICULLUM-BASED ENROLMENT SYSTEM</div>
+		<div class="alert alert-info" style="text-align:center;padding:10px;font-size:25px;color:#AA0D0D;font-weight:bold">CURRICULLUM-BASED ENROLMENT SYSTEM</div>
+		
 		<div id="login_form" >
 		<script type="text/javascript">
 				$(document).ready(function() { 
@@ -14,7 +15,7 @@ session_start();
 				 }, 2000); 
 				});
 			</script>
-		<div class="alert alert-info center " style="padding:10px"><center><b><span class="glyphicon glyphicon-lock"></span>&nbsp;ENTER YOUR ACCOUNT CODE# AND PASSWORD</b></center></div>
+			<br>
 			<div style="background-color:#f5f5f5" >
 			<?php
 				if(isset($_SESSION['error']))

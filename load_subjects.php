@@ -1,4 +1,5 @@
 <?php 	session_start();?>
+
 <?php
 include("includes/conf.php");
 include("includes/db_func.php");
@@ -18,7 +19,7 @@ $cods=$_GET['codes'];
 				$sched=trim($data['schedule']);
 				$sem=trim($data['semester']);
 				$days=trim($data['days']);
-				$schol=trim($data['schoolyear']);
+				$schol="2014-2015";
 				$grade="";
 				$remarks="IR";	
 				$studno=$_SESSION['studno'];
@@ -34,10 +35,10 @@ $cods=$_GET['codes'];
 			// echo "select * from subject_enrolled where sub_code IN($pre_sub_code) and remarks IN('IR','INC', 'FAIL')";
 			// Check if has pre requisite
 			if($sql_pre->prequisite_sub):
-				$pre_results = db_select('subject_enrolled', '*', "where studno='$studno' and sub_code IN($pre_sub_code) ");
+				$pre_results = db_select('subject_enrolled', '*', "where studno='$studno' and (sub_code IN($pre_sub_code)) AND(remarks IN('IR','INC', 'FAILED'))");
 				
 				if($pre_results):
-					header("location:enrol.php?exist=1&id=$studno&sub=$sub&codes=$cods&show_pre=1");
+					header("location:enrol.php?exist=1&id=$studno&sub=$sub&codes=$cods&show_pre=1&time=$sched");
 					die();
 				endif;
 			endif;
@@ -46,24 +47,24 @@ $cods=$_GET['codes'];
 
 			//update subject_enrolled table
 				$check=mysql_query("select * from subject_enrolled where (studno='$studno' AND schedule='$sched'
-				 AND days='$days') OR (studno='$studno') AND sub_code='$code'") or die('Your Table cannot be queried');
+				 AND days='$days') AND sub_code='$code'") or die('Your Table cannot be queried');
 				if($check){
 					
 					$num=mysql_num_rows($check);
 					if($num>0)
 					{
-						header("Location:enrol.php?exist=1&id=$studno&sub=$sub&codes=$cods");
+						header("Location:enrol.php?exist=1&id=$studno&sub=$sub&codes=$cods&time=$sched");
 					
 					}
 					else
 					{
 						$sql=mysql_query("INSERT INTO subject_enrolled(studno,sub_id,sub_code,description,sub_units,sub_section,
-											schedule,days,room,yrlevel,schoolyear,semester,grade,print,Remarks)
+											schedule,days,room,yrlevel,schoolyear,semester,grade,print,Remarks,printed_date)
 											VALUES('$studno','$ids','$code','$des','$units','$sec','$sched','$days',
-												'$room','$yr','$schol','$sem','$grade','','$remarks')");
+												'$room','$yr','$schol','$sem','$grade','','$remarks',now())");
 							if($sql)
 							{
-							header("Location:enrol.php?exist=2&id=$studno&sub=$sub&codes=$cods");
+							header("Location:enrol.php?exist=2&id=$studno&sub=$sub&codes=$cods&time=$sched");
 							
 							}
 							else

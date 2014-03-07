@@ -14,7 +14,7 @@ include("includes/conf.php");
 
 <div style="text-align:center;color:green;margin:5px;padding:5px;background-color:#CCCCFF;border-radius:5px">WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM. You are login as<font color="red"> <?php echo $_SESSION['username'];?> </font>
 |&nbsp;<?php if($_SESSION['level']==100):?><a href="admin/manage.php"><span class="glyphicon glyphicon-folder-close ">manage</span></a>&nbsp;|<?php endif;?>
-<?php if($_SESSION['level']==6 || $_SESSION['level']==100):?><a href="stud_images.php"><span class="glyphicon glyphicon-camera"></span></a>&nbsp;|<?php endif?><a href="logout.php"><span class="glyphicon glyphicon-flash ">Logout</span></a></div>
+<a href="logout.php"><span class="glyphicon glyphicon-flash ">Logout</span></a></div>
 <!--right panel-->
 <div  id="contents">
 	<!--right panel-->

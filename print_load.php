@@ -34,7 +34,7 @@ session_start();
 	payment.tut_orno,payment.tut_ordate,payment.yrlevel,payment.graduating,
 	payment.course,payment.coursecode,payment.yrlevel,payment.graduating,payment.schoolyear FROM stud_information
 	INNER JOIN payment ON payment.studno=stud_information.studno where payment.studno='$id' 
-	AND stud_information.studno='$id'") or die('cannot query');
+	AND stud_information.studno='$id' AND payment.flag=0") or die('cannot query');
 	$rows=mysql_fetch_assoc($query);
 	$name=$rows['lname']."\t\t,".$rows['fname']."\t".$rows['mname'];
 	$course=$rows['course'];
@@ -87,7 +87,7 @@ session_start();
 	?>
 		<?php
 	$studno=$_SESSION['studno'];
-	$done=mysql_query("select * from subject_enrolled where studno='{$_SESSION['studno']}' order by days");
+	$done=mysql_query("select * from subject_enrolled where studno='{$_SESSION['studno']}' AND print='0' order by days");
 	$i=1;
 	if($done)
 	{
@@ -96,7 +96,8 @@ session_start();
 	$total=mysql_num_rows($done);
 	while($sub=mysql_fetch_assoc($done))
 		{
-
+		$date=$sub['printed_date'];
+		echo $date;
 		$id=$sub['id'];
 		$count=0;
 		$code=$sub['sub_code'];
@@ -113,8 +114,9 @@ session_start();
 
 		
 }
-	$data=mysql_query("select sum(sub_units) as units from subject_enrolled where studno='{$_SESSION['studno']}'");
+	$data=mysql_query("select sum(sub_units) as units from subject_enrolled where studno='{$_SESSION['studno']}' AND print=0");
 	$check=mysql_fetch_assoc($data);
+	
 	$count=$check['units'];	
 	echo "</div";
 	echo "</hr>";
@@ -126,7 +128,12 @@ $yr=$_GET['id'];
 $update=mysql_query("update subject_enrolled set print=1 where studno='$studno'");
 ?>
 <div style="float:right">Total Units:<?php echo $count;?><br>No. Subjects:<?php echo $total; ?></div>
-
+<div>
+<br>
+<p>When Its printed no further changes in this loadslip</p>
+<p>Student Signature:__________________</p>
+<p align="left">Printed  : <?php echo $date;?></p>
+</div>
 <script type='text/javascript'>
 window.print();
 </script>
