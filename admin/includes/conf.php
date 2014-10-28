@@ -6,3 +6,4 @@ $db=mysql_select_db('enrolment');
 
 }
 else echo "Cannot connect to the server";
+?>

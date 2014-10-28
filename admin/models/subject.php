@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 /*
 * SUBJECT DB MODEL 
 */
@@ -17,6 +20,8 @@ function createSubject()
 	$numrows=mysql_num_rows($sql);
 	if($numrows==0)
 	{//add a subject..
+		$data=mysql_fetch_assoc($sql);
+		$_SESSION['yrlevel']=$data['schoolyear'];
 		db_insert('subject_offered', $_POST);
 		$_SESSION['alert'] = 'success|New Subject Added';
 		redirect('manage_subjects.php');

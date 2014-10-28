@@ -35,10 +35,10 @@ SUBJECT:<?php  echo $_GET['name'];?><br>
 	<?php
 		$id=$_GET['id'];
 		$i=1;
-			$query=mysql_query("select stud_information.studno,payment.studno,payment.coursecode,payment.yrlevel,
+			$query=mysql_query("select distinct stud_information.studno,payment.studno,payment.coursecode,payment.yrlevel,payment.flag,
 				stud_information.fname,subject_enrolled.Remarks,stud_information.mname,stud_information.lname,subject_enrolled.sub_code,subject_enrolled.sub_id,subject_enrolled.grade,subject_enrolled.studno from stud_information
 				 inner join subject_enrolled on stud_information.studno=subject_enrolled.studno inner join payment on 
-				 subject_enrolled.studno=payment.studno where subject_enrolled.sub_id='$id'");
+				 subject_enrolled.studno=payment.studno where subject_enrolled.sub_id='$id' and payment.flag='0'");
 					if($query){
 
 							echo '<table class="table table-hover">

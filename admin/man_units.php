@@ -27,7 +27,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 		$query=mysql_query("select * from subject_units");
 		echo "<table class='table table-stripped'>
 				<th>Course ID</th><th>Semester</th><th>Units</th><th>Year Level</th><th width='12%'>Operation|
-				 <a href='add-units.php'data-toggle='modal'  data-target='#myModal id='add-units'>
+				 <a href='add_units.php'data-toggle='modal'  data-target='#myModal id='add-units'>
 				 <span class='glyphicon glyphicon-plus'></span></a></th><tr/>";
 		while($data=mysql_fetch_assoc($query)){
 			$id=$data['id'];

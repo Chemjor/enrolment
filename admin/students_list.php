@@ -30,7 +30,7 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 	<?php
 	$id=$_GET['id'];
 	//query
-	$query=mysql_query("select stud_information.studno,payment.studno,payment.coursecode,
+	$query=mysql_query("select distinct stud_information.studno,payment.studno,payment.coursecode,
 		payment.yrlevel,stud_information.fname,stud_information.mname,stud_information.lname,
 		subject_enrolled.studno,subject_enrolled.Remarks,subject_enrolled.grade from stud_information inner join subject_enrolled on 
 		stud_information.studno=subject_enrolled.studno inner join payment on 

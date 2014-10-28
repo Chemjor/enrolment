@@ -5,7 +5,11 @@
 		header('Location:../index.php');
 	}
 ?>
-<?php include('includes/header.php'); ?>
+<?php 
+include('includes/header.php'); 
+ include('includes/conf.php');
+ $yr=$_SESSION['schoolyr'];
+  ?>
 <!-- ajax-->
 
 <!--end ajax-->
@@ -16,15 +20,22 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 <span class="glyphicon glyphicon-user">Instructor</span></a>|<a href="../logout.php">
 <span class="glyphicon glyphicon-remove">Logout</span></a> </font>
 </div>
-
+<div style="background-color:#300000;color:white;text-align:center;font-weight:bold">MANAGE SUBJECTS | <?php echo $yr;?></div>
 <div id="manage">
-			 MANAGE SUBJECTS |
+			 
 			<a href="Add_subject.php" data-toggle='modal' data-target='#myModal' id="add-subject">
 			<span class="glyphicon glyphicon-plus"><font color="darkblue">ADD_SUBJECT</font></span>
 			</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input style="text-align:center;color:grey" type="text" placeholder="Type to Search" id="search" name="search" />
 			<span class="glyphicon glyphicon-search " ></span>
-			<a href="man_units.php" id="man_units"><span class="glyohicon glyphicon-plus pull-right"><font size="1">ManageUnits</font></span></a>
+			|
+			<a href="schoolyr.php" id="man_units"><span class="glyohicons glyphicon-star "><font size="2" color="darkblue">SchoolYear</font></span></a>
+			|
+			<a href="man_units.php" id="man_units"><span class="glyohicons glyphicon-plus"><font size="2" color="darkblue">ManageUnits</font></span></a>
+			|
+			<a href="curriculum.php" id="man_units"><span class="glyohicons glyphicon-plus"><font size="2" color="darkblue">ManageSubjectMaster</font></span></a>
+			<a href="courses.php" id="man_units"><span class="glyohicons glyphicon-plus"><font size="2" color="darkblue">ManageCourses</font></span></a>
+
 </div>
 
 <?=alert_messages()?>
@@ -272,14 +283,14 @@ WELCOME TO CURRICULUM-BASED ENROLMENT SYSTEM.You are login as<font color="red">
 			   <div class="form-group">
 			   <label for="schoolyear">School Year:</label>
 			   <div>
-			   	<select required class="form-control" id="schoolyear" name="schoolyear">
-			   <option>2014-2015</option>
-			   <option>2015-2016</option>
-			   <option>2016-2017</option>
-			   <option>2017-2018</option>
-			   <option>2018-2019</option>
-			   </select>
-
+			   	<?php 
+					$years=mysql_query("select * from schoolyear where status='Active'");
+					$data=mysql_fetch_assoc($years);
+					
+						$current=$data['start']."-".$data['end'];
+					
+				?>
+			   	<input type="text" readonly=""  class="form-control" placeholder="<?php echo $current?>"   value="<?php echo $current;?>" id="schoolyear" name="schoolyear">
 			   </div>
 			   </div>
 

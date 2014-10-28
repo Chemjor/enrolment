@@ -5,17 +5,15 @@ session_start();
 	$stud=mysql_real_escape_string($_POST['studno']);
 	$code=mysql_real_escape_string($_POST['code']);
 	$sub=$_SESSION['sub_id'];
-	if($grade <=75)
+	if($grade >=4.0)
 	{
 		$remarks="Fail";
 	}
-	elseif($grade>75 && $grade<85)
+	elseif($grade>1.0 && $grade<=3.0)
 	{
 		$remarks="Pass";
 	}
-	elseif ($grade>=85) {
-		$remarks="Excellence";
-	}
+
 
 
 	if(!is_numeric($grade) || $grade<0)
